@@ -1,0 +1,26 @@
+Ubuntu Server Installation
+https://ubuntu.com/download/server
+
+Flash the ISO to a USB Stick using Balena Etcher or a disk imaging program of your choice:
+https://etcher.balena.io/
+
+Install the Server!
+Select the default setting except you uncheck “Set up this drive as an LVM group” when asked about partitioning your drive" 
+because you want to use all the avaiable disk space
+
+Assigning a static IP address to your server
+Recommended Method: Go to your Gateway and mannual reserve a static IP address to your server’s network configuration.
+
+SSH Setup
+Select [*] Install OpenSSH server, leave everything else default
+
+SERVER INSTALLED AND SHOULD BE ABLE TO SSH USING THE CREDENTIAL YOU CREATED EARLIER
+E.G: SSH USERNAME@10.0.0.10
+   : password
+
+----------------------------------------------------------------------------------------------------
+                                        SAMBA SERVER INSTALLTION
+Samba is a server software that enables file and printer sharing between different operating systems, 
+primarily allowing Linux/Unix systems to share files and printers with Windows systems over a network. 
+It implements the SMB (Server Message Block) protocol, which is the protocol Windows systems use for network file and printer sharing, 
+making it possible for non-Windows systems to access and share files with Windows machines seamlessly
