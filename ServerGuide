@@ -100,12 +100,31 @@ Make sure to select the IP of your server as the LAN IP Address, 51820 as the po
 
 Do a google search based on your router carrier, E.G Xfinity
 
+                             3.Install Wireguard
+To install Wireguard, you can use the PiVPN scripts. 
+Although they are designed to run on Raspberry Pi OS, 
+they also work on Ubuntu Server, as they are both based on Debian. 
 
-To install Wireguard, you can use the PiVPN scripts. Although they are designed to run on Raspberry Pi OS, they also work on Ubuntu Server, as they are both based on Debian. Run `curl -L [https://install.pivpn.io](https://install.pivpn.io/) | bash` and follow the prompts for Wireguard.
-
-Don’t worry about the DHCP stuff in the installation, you’ve reserved your server’s local IP address in your router settings earlier. Leave the port as the default value, port 51820, which is the one we forwarded before. You can select any DNS provider you want, we’re going to scroll down to select CloudFlare. After this step is the important part - **make sure to select “DNS Entry” instead of the IP address that shows up. Here, we’re going to input the DuckDNS address we made earlier.** We also recommend enabling unattended upgrades, for extra security.
 curl -L https://install.pivpn.io | bash
 
+Don’t worry about the DHCP stuff in the installation, you’ve reserved your server’s local IP address in your router settings earlier. 
+Leave the port as the default value, port 51820, which is the one we forwarded before. 
+You can select any DNS provider you want, we’re going to scroll down to select CloudFlare. 
+After this step is the important part - 
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+make sure to select “DNS Entry” instead of the IP address that shows up. Here, we’re going to input the DuckDNS address we made earlier                +
+We also recommend enabling unattended upgrades, for extra security.                                                                                    +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**Setting up clients
+pivpn add   ** give a name to our client. It can be anything you want
+pivpn -qr   ** open the Wireguard app and scan the qr code
+
+From this point on, you can turn on the toggle switch that connects to your home network, 
+and route all your traffic through there. 
+If you can see that both “Data Sent” and “Data Received” are going up, the connection works. 
+This means you can use something like Swiftfin on your iPhone to enjoy your Jellyfin media from anywhere. 
 
 
 
