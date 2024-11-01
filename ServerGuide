@@ -60,7 +60,51 @@ Once that’s done, save the file by pressing Ctrl+X, then Y and Enter
 **SET THE LOG IN CREDENTIAL AND PASSWORD.YOU’LL USE ON CLIENT MACHINES TO CONNECT TO THE NETWORK STORAGE
 sudo smbpasswd -a USERNAME
 
-sudo systemctl restart smbd    **To restart Samba and make sure the changes go through
+sudo systemctl restart smb    **To restart Samba and make sure the changes go through
+
+---------------------------------------------------------------------------------------------------------
+                                INSTALL JELLYFIN INSTALLATION
+Jellyfin is a media management tool for Movies, Shows and Music.
+
+** INSTALL ON SERVER
+curl https://repo.jellyfin.org/install-debuntu.sh | sudo bash
+SERVER_ADDRESS:8096    **ACCESS VIA WEBSITE
+
+-------------------------------------------------------------------------------------------------------
+                                Wireguard VPN INSTALLION
+Wireguard is a free and open source VPN. 
+You may use Wireguard to access the devices on your home network 
+from outside of your home network without having to port forward all of your services. 
+This greatly increases your network’s security, 
+as less services are exposed and there are less entry points for your network.
+
+
+                               1.INSTALL DYNAMIC DNS FISRT
+Dynamic DNS (DDNS) is a service that automatically updates the DNS records for a 
+domain name whenever the IP address of the host changes. 
+This is particularly useful for devices or services that do not have a static IP address, 
+which can change frequently, such as those provided by many Internet Service Providers (ISPs).
+
+** WE WILL BE USING DUCKDNS.ORG
+https://www.duckdns.org/
+1.CREATE A DOMAIN
+2.install LOCATED AT TOP LEFT CORNER 
+3.Operating Systems: linux cron
+4.follow the linux cron guide
+
+                              2.Port Forwarding
+In order for Wireguard to work, you will need to forward port 51820 in your router’s web interface. 
+This varies on each router, so you will have to find how to do it in your router specifically. 
+Look for an Internet, Firewall, Security and Port Forwarding section. 
+Make sure to select the IP of your server as the LAN IP Address, 51820 as the port on both WAN and LAN and use UDP as the protocol.
+
+Do a google search based on your router carrier, E.G Xfinity
+
+
+To install Wireguard, you can use the PiVPN scripts. Although they are designed to run on Raspberry Pi OS, they also work on Ubuntu Server, as they are both based on Debian. Run `curl -L [https://install.pivpn.io](https://install.pivpn.io/) | bash` and follow the prompts for Wireguard.
+
+Don’t worry about the DHCP stuff in the installation, you’ve reserved your server’s local IP address in your router settings earlier. Leave the port as the default value, port 51820, which is the one we forwarded before. You can select any DNS provider you want, we’re going to scroll down to select CloudFlare. After this step is the important part - **make sure to select “DNS Entry” instead of the IP address that shows up. Here, we’re going to input the DuckDNS address we made earlier.** We also recommend enabling unattended upgrades, for extra security.
+curl -L https://install.pivpn.io | bash
 
 
 
