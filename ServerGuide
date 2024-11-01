@@ -126,10 +126,25 @@ and route all your traffic through there.
 If you can see that both “Data Sent” and “Data Received” are going up, the connection works. 
 This means you can use something like Swiftfin on your iPhone to enjoy your Jellyfin media from anywhere. 
 
+----------------------------------------------------------------------------------------------------------------------------
+Installation PI-HOLE server that acts as a Domain Name System (DNS) and perform ad blocking
+Follow the guide
 
+https://docs.pi-hole.net/main/basic-install/
 
+Unbound 
+Unbound is a recursive DNS resolver that can be used with Pi-hole to enhance its functionality and improve DNS performance and privacy.
+When you use Unbound as a DNS resolver with Pi-hole, it helps bypass third-party DNS services like Google DNS
 
+https://docs.pi-hole.net/guides/dns/unbound/
 
+when finished installed, go to pihole admin website
+Go to SETTING>>DNS>>CUSTOM 1
+
+ENTER:
+127.0.0.1#5335
+
+AND SAVE
 
 
 
