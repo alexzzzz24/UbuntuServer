@@ -1,4 +1,10 @@
-Ubuntu Server Installation
+                                     UBUNTU SERVER INSTALLTION
+Ubuntu Server is a variant of the Ubuntu operating system designed specifically for server use. 
+Unlike the standard Ubuntu Desktop edition, it does not come with a graphical interface by default, 
+which helps reduce system resource usage and makes it ideal for running services and applications in the background. 
+Ubuntu Server is highly versatile and commonly used for cloud computing, hosting, databases, web servers, and more.
+
+Download th Ubuntu Server ISO
 https://ubuntu.com/download/server
 
 Flash the ISO to a USB Stick using Balena Etcher or a disk imaging program of your choice:
@@ -19,8 +25,57 @@ E.G: SSH USERNAME@10.0.0.10
    : password
 
 ----------------------------------------------------------------------------------------------------
-                                        SAMBA SERVER INSTALLTION
+                                     SAMBA SERVER INSTALLTION
 Samba is a server software that enables file and printer sharing between different operating systems, 
 primarily allowing Linux/Unix systems to share files and printers with Windows systems over a network. 
 It implements the SMB (Server Message Block) protocol, which is the protocol Windows systems use for network file and printer sharing, 
 making it possible for non-Windows systems to access and share files with Windows machines seamlessly
+
+**SSH TO YOUR SERVER
+SSH USERNAME@10.0.0.10
+
+**INSTALL SAMBA
+sudo apt install samba
+
+**CREATE DIRECTORY FOR MAPPIONG PURPOSE LATER
+sudo mkdir /media/myfiles
+
+**Since this folder will likely be accessed by other utilities,
+**it is best to give your user all permissions to avoid issues later on.
+sudo chown $USER: /media/myfiles
+
+**CONFIGURE ON YOUR SERVER, ONLY ALLOWING THE CORRECT CREDENTIAL TO LOG IN. BY DEFAULT, 
+**SAMBA WILL TREAT ANY ATTEMPTS TO LOG IN WITH THE WRONG CREDENTIALS AS A GUEST USER.
+sudo nano /etc/samba/smb.conf
+map to guest = never            ****CHANGE FROM map to guest = bad user TO map to guest = never
+
+** ADD THIS TO THE END OF THE FILE
+[myfiles]                   **myfiles is your share name, and will be used when connecting over the network
+  path = /media/myfiles     **path is the folder shared from your server
+  writeable=yes             **allows the creation and editing of files
+  public=no                 ** hides the share if the user isn’t authenticated
+
+Once that’s done, save the file by pressing Ctrl+X, then Y and Enter
+
+**SET THE LOG IN CREDENTIAL AND PASSWORD.YOU’LL USE ON CLIENT MACHINES TO CONNECT TO THE NETWORK STORAGE
+sudo smbpasswd -a USERNAME
+
+sudo systemctl restart smbd    **To restart Samba and make sure the changes go through
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
